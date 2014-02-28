@@ -1,0 +1,5 @@
+#! /bin/sh
+# /etc/init.d/mailcatcher
+#
+
+/usr/local/bin/mailcatcher --ip={{ mailcatcher_ip }} --smtp-ip={{ mailcatcher_smtp_ip }} --smtp-port={{ mailcatcher_smtp_port }} --http-ip={{ mailcatcher_http_ip }} --http-port={{ mailcatcher_http_port }}

@@ -1,0 +1,25 @@
+---
+# tasks file for role-mailcatcher
+- name: Install required software
+  apt: pkg={{ item }} state=latest
+  with_items:
+      - sqlite3
+      - libsqlite3-dev
+      - ruby
+      - rubygems
+      
+- name: Install Mailcatcher
+  command: gem install mailcatcher
+
+- name: Create startup script for mailcatcher
+  template: src=mailcatcher.j2 dest=/etc/init.d/mailcatcher mode=0755
+
+- name: Mailcatcher will start upon boot
+  command: update-rc.d mailcatcher defaults
+
+- name: Make sure Mailcatcher is not running
+  command: pkill mailcatcher
+  ignore_errors: yes
+
+- name: Start mailcatcher properly with the start script
+  command: /etc/init.d/mailcatcher

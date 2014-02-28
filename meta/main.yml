@@ -1,0 +1,19 @@
+---
+galaxy_info:
+  author: "Stephan Hochhaus"
+  company: Freelance
+  license: BSD
+  min_ansible_version: 1.4
+  platforms:
+    - name: Ubuntu
+      versions:
+        - saucy
+        - precise
+    - name: Debian
+      versions:
+        - wheezy
+        - squeeze
+  categories:
+   - development
+dependencies: []
+  
