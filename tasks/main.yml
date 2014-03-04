@@ -5,7 +5,7 @@
   with_items:
       - sqlite3
       - libsqlite3-dev
-      - ruby
+      - ruby-dev
       - rubygems
       
 - name: Install Mailcatcher
