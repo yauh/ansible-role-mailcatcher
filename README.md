@@ -20,7 +20,7 @@ Role Variables
 Dependencies
 ------------
 
-No other roles are required for this role.
+Depends on joshualund.ruby-1_9_3 (and indirectly joshualund.ruby-common)
 
 License
 -------

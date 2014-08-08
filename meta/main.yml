@@ -15,5 +15,6 @@ galaxy_info:
         - squeeze
   categories:
    - development
-dependencies: []
+dependencies: 
+   - joshualund.ruby-1_9_3
   
