@@ -3,6 +3,7 @@
 - name: Install required software
   apt: pkg={{ item }} state=latest
   with_items:
+      - build-essential
       - sqlite3
       - libsqlite3-dev
       - ruby-dev
