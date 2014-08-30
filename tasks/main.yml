@@ -7,8 +7,11 @@
       - sqlite3
       - libsqlite3-dev
       - ruby-dev
-      - rubygems
-      
+
+- name: Install rubygems
+  apt: pkg=rubygems state=latest
+  when: ansible_distribution == 'Ubuntu' and ansible_distribution_release > 'trusty'
+
 - name: Install Mailcatcher
   command: gem install mailcatcher
 
