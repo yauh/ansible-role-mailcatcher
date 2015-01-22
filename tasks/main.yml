@@ -1,6 +1,6 @@
 ---
 # tasks file for role-mailcatcher
-- name: Install required software
+- name: Install mailcatcher dependencies
   apt: pkg={{ item }} state=present
   with_items:
       - build-essential
@@ -11,18 +11,23 @@
   sudo: yes
 
 - name: Check for mailcatcher
-  command: which mailcatcher
-  register: mailcatcher_status
+  stat:
+    path=/usr/local/bin/mailcatcher
+  register: mailcatcher_installed
 
 - name: Install Mailcatcher
   command: gem install mailcatcher
   sudo: yes
-  when: "'bin/mailcatcher' not in mailcatcher_status.stdout"
+  when: not mailcatcher_installed.stat.exists
+
+- name: Create startup script for mailcatcher
+  template: src=mailcatcher.j2 dest=/etc/init.d/mailcatcher mode=0755
 
 - name: Kill previous mailcatcher
   command: pkill -9 mailcatcher
+  ignore_errors: true
   sudo: yes
 
 - name: Start mailcatcher
-  command: mailcatcher --ip={{ mailcatcher_ip }} --smtp-ip={{ mailcatcher_smtp_ip }} --smtp-port={{ mailcatcher_smtp_port }} --http-ip={{ mailcatcher_http_ip }} --http-port={{ mailcatcher_http_port }}
+  service: name=mailcatcher state=started enabled=yes
   sudo: yes
