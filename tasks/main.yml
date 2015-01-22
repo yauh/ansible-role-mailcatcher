@@ -10,9 +10,14 @@
       - ruby
   sudo: yes
 
+- name: Check for mailcatcher
+  command: which mailcatcher
+  register: mailcatcher_status
+
 - name: Install Mailcatcher
   command: gem install mailcatcher
   sudo: yes
+  when: "'bin/mailcatcher' not in mailcatcher_status.stdout"
 
 - name: Create startup script for mailcatcher
   template: src=mailcatcher.j2 dest=/etc/init.d/mailcatcher mode=0755
