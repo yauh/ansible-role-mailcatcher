@@ -10,18 +10,19 @@
       - ruby
   sudo: yes
 
+- name: Check for mailcatcher
+  command: which mailcatcher
+  register: mailcatcher_status
+
 - name: Install Mailcatcher
   command: gem install mailcatcher
   sudo: yes
+  when: "'bin/mailcatcher' not in mailcatcher_status.stdout"
 
-- name: Create startup script for mailcatcher
-  template: src=mailcatcher.j2 dest=/etc/init.d/mailcatcher mode=0755
+- name: Kill previous mailcatcher
+  command: pkill -9 mailcatcher
   sudo: yes
 
-- name: Mailcatcher will start upon boot
-  command: update-rc.d mailcatcher defaults
-  sudo: yes
-
-- name: Start mailcatcher with the script
-  service: name=mailcatcher state=started
+- name: Start mailcatcher
+  command: mailcatcher --ip={{ mailcatcher_ip }} --smtp-ip={{ mailcatcher_smtp_ip }} --smtp-port={{ mailcatcher_smtp_port }} --http-ip={{ mailcatcher_http_ip }} --http-port={{ mailcatcher_http_port }}
   sudo: yes
