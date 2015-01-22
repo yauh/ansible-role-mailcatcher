@@ -18,10 +18,6 @@
   template: src=mailcatcher.j2 dest=/etc/init.d/mailcatcher mode=0755
   sudo: yes
 
-- name: Mailcatcher will start upon boot
-  command: update-rc.d mailcatcher defaults
-  sudo: yes
-
 - name: Start mailcatcher with the script
   service: name=mailcatcher state=started
   sudo: yes
