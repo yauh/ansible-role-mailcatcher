@@ -1,29 +1,27 @@
 ---
 # tasks file for role-mailcatcher
 - name: Install required software
-  apt: pkg={{ item }} state=latest
+  apt: pkg={{ item }} state=present
   with_items:
       - build-essential
       - sqlite3
       - libsqlite3-dev
       - ruby-dev
-
-- name: Install rubygems
-  apt: pkg=rubygems state=latest
-  when: ansible_distribution == 'Ubuntu' and ansible_distribution_release > 'trusty'
+      - ruby
+  sudo: yes
 
 - name: Install Mailcatcher
   command: gem install mailcatcher
+  sudo: yes
 
 - name: Create startup script for mailcatcher
   template: src=mailcatcher.j2 dest=/etc/init.d/mailcatcher mode=0755
+  sudo: yes
 
 - name: Mailcatcher will start upon boot
   command: update-rc.d mailcatcher defaults
+  sudo: yes
 
-- name: Make sure Mailcatcher is not running
-  command: pkill mailcatcher
-  ignore_errors: yes
-
-- name: Start mailcatcher properly with the start script
-  command: /etc/init.d/mailcatcher
+- name: Start mailcatcher with the script
+  service: name=mailcatcher state=started
+  sudo: yes
