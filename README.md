@@ -1,4 +1,4 @@
-Role-Mailcatcher
+Mailcatcher
 ========
 
 This role installs [Mailcatcher](http://mailcatcher.me) on your system and starts it upon boot time.
@@ -17,10 +17,6 @@ Role Variables
     mailcatcher_http-ip: 0.0.0.0  # Set the ip address of the http server
     mailcatcher_http-port: 1080   # Set the port address of the http server
 
-Dependencies
-------------
-
-Depends on joshualund.ruby-1_9_3 (and indirectly joshualund.ruby-common)
 
 License
 -------
