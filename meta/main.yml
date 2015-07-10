@@ -1,6 +1,7 @@
 ---
 galaxy_info:
   author: "Stephan Hochhaus"
+  description: Set up Mailcatcher
   company: Freelance
   license: BSD
   min_ansible_version: 1.4
@@ -9,10 +10,6 @@ galaxy_info:
       versions:
         - saucy
         - precise
-    - name: Debian
-      versions:
-        - wheezy
-        - squeeze
+        - trusty
   categories:
    - development
-  
