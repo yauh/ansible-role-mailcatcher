@@ -6,7 +6,6 @@
       - libsqlite3-dev
       - ruby-dev
       - ruby
-  sudo: yes
 
 - name: Check for mailcatcher
   stat:
@@ -15,7 +14,6 @@
 
 - name: Install Mailcatcher
   command: gem install mailcatcher
-  sudo: yes
   when: not mailcatcher_installed.stat.exists
 
 - name: Create upstart script for mailcatcher
