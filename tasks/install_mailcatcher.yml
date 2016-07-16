@@ -13,7 +13,7 @@
   register: mailcatcher_installed
 
 - name: Install Mailcatcher
-  command: gem install mailcatcher
+  command: gem install mailcatcher:0.5.12
   when: not mailcatcher_installed.stat.exists
 
 - name: Create upstart script for mailcatcher
