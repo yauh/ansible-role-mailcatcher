@@ -16,7 +16,11 @@
   command: gem install mime-types --version "< 3"
 
 - name: Install Mailcatcher
+<<<<<<< HEAD
   command: gem install mailcatcher -v 0.5.12
+=======
+  command: gem install mailcatcher:0.5.12
+>>>>>>> b031846... Specify the old mailcatcher version
   when: not mailcatcher_installed.stat.exists
 
 - name: Create upstart script for mailcatcher
