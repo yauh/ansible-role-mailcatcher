@@ -1,5 +1,9 @@
 # Mailcatcher
-Ansible role for setting up [Mailcatcher](http://mailcatcher.me)
+
+Ansible role for setting up a working [Mailcatcher](http://mailcatcher.me)
+
+* Added a dependency for `mime-types`
+* Specified the version of mailcatcher as `0.5.12` as this is the persistent working version that doesn't break
 
 ## Requirements
 No external requirements exist to this role.
@@ -19,5 +23,6 @@ BSD
 
 ## Author Information
 Stephan Hochhaus [stephan@yauh.de](mailto:stephan@yauh.de)
+_with some changes_
 
 [yauh.de](http://yauh.de)
