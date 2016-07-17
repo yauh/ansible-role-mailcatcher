@@ -15,4 +15,4 @@ galaxy_info:
    - development
    - email
   issue_tracker_url: https://github.com/surfer190/ansible-role-mailcatcher/issues
-  dependencies: []
+dependencies: []
