@@ -1,7 +1,7 @@
 ---
 galaxy_info:
   author: "Stephan Hochhaus"
-  description: Set up Mailcatcher
+  description: Set up a working Mailcatcher
   company: Freelance
   license: BSD
   min_ansible_version: 1.4
@@ -11,5 +11,8 @@ galaxy_info:
         - saucy
         - precise
         - trusty
-  categories:
+  galaxy_tags:
    - development
+   - email
+  issue_tracker_url: https://github.com/surfer190/ansible-role-mailcatcher/issues
+dependencies: []

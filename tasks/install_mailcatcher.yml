@@ -12,8 +12,11 @@
     path=/usr/local/bin/mailcatcher
   register: mailcatcher_installed
 
+- name: Install required mime-types
+  command: gem install mime-types --version "< 3"
+
 - name: Install Mailcatcher
-  command: gem install mailcatcher
+  command: gem install mailcatcher -v 0.5.12
   when: not mailcatcher_installed.stat.exists
 
 - name: Create upstart script for mailcatcher
