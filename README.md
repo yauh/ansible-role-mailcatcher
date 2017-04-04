@@ -14,6 +14,19 @@ mailcatcher_http-ip: 0.0.0.0  # Set the ip address of the http server
 mailcatcher_http-port: 1080   # Set the port address of the http server
 ```
 
+## Testing
+
+To execute syntax checks and integration tests run:
+
+```
+echo "Requirementes:"
+pip install ansible
+gem install bundler
+
+echo "Run checks:"
+bash run_tests.sh
+```
+
 ## License
 BSD
 
