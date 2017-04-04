@@ -1,5 +1,5 @@
 # Mailcatcher
-Ansible role for setting up [Mailcatcher](http://mailcatcher.me)
+Ansible role for setting up [Mailcatcher](http://mailcatcher.me). 
 
 ## Requirements
 No external requirements exist to this role.
@@ -18,6 +18,5 @@ mailcatcher_http-port: 1080   # Set the port address of the http server
 BSD
 
 ## Author Information
-Stephan Hochhaus [stephan@yauh.de](mailto:stephan@yauh.de)
-
-[yauh.de](http://yauh.de)
+Juan Carlos Castillo Cano
+[jccastillocano@gmail.com](mailto:jccastillocano@gmail.com)
