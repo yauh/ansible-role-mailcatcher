@@ -31,5 +31,9 @@ bash run_tests.sh
 BSD
 
 ## Author Information
-Juan Carlos Castillo Cano
+Author: Stephan Hochhaus [stephan@yauh.de](mailto:stephan@yauh.de)
+
+Contributor: Juan Carlos Castillo Cano
 [jccastillocano@gmail.com](mailto:jccastillocano@gmail.com)
+
+[yauh.de](http://yauh.de)
