@@ -1,0 +1,33 @@
+[Unit]
+Description=Mailcatcher service
+After=network.target auditd.service
+
+[Service]
+WorkingDirectory=/home/mailcatcher
+ExecStart=mailcatcher -f -v --ip={{ mailcatcher_ip }} --smtp-ip={{ mailcatcher_smtp_ip }} --smtp-port={{ mailcatcher_smtp_port }} --http-ip={{ mailcatcher_http_ip }} --http-port={{ mailcatcher_http_port }} &>>/var/log/mailcatcher/mailcatcher.log
+ExecReload=/bin/kill -HUP $MAINPID
+KillMode=process
+Restart=on-failure
+RestartPreventExitStatus=255
+Type=notify
+
+[Install]
+WantedBy=multi-user.target
+Alias=mailcatcher.service
+
+[Unit]
+Description=Mailcatcher service
+
+[Service]
+WorkingDirectory=/home/mailcatcher
+ExecStart=/usr/local/bin/mailcatcher -v --ip={{ mailcatcher_ip }} --smtp-ip={{ mailcatcher_smtp_ip }} --smtp-port={{ mailcatcher_smtp_port }} --http-ip={{ mailcatcher_http_ip }} --http-port={{ mailcatcher_http_port }} >> /var/log/mailcatcher.log 2>&1
+ExecReload=/bin/kill -HUP $MAINPID
+KillMode=process
+Restart=on-failure
+RestartPreventExitStatus=255
+Type=notify
+User=mailcatcher
+Group=mailcatcher
+
+[Install]
+WantedBy=multi-user.target
