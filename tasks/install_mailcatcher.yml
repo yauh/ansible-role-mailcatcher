@@ -29,10 +29,7 @@
   register: mailcatcher_installed
 
 - name: Install Mailcatcher
-  gem:
-    name: mailcatcher
-    state: present
-    executable: "{{ ruby_gem_bin }}"
+  command: "{{ ruby_gem_bin }} install mailcatcher --no-rdoc --no-ri"
   when: not mailcatcher_installed.stat.exists
 
 - name: Create upstart script for mailcatcher
@@ -41,4 +38,4 @@
     dest: "{{ mailcatcher_service_target }}"
     mode: 0644
   notify:
-    - restart mailcatcher
+    - start mailcatcher
