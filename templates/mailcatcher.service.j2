@@ -1,5 +1,6 @@
 [Unit]
 Description=Mailcatcher service
+After=syslog.target network.target
 
 [Service]
 WorkingDirectory=/home/mailcatcher
