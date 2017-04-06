@@ -1,11 +1,27 @@
+- include_vars: "{{ item }}"
+  with_first_found:
+    - "../vars/{{ ansible_distribution }}-{{ ansible_distribution_major_version | int}}.yml"
+    - "../vars/{{ ansible_distribution }}.yml"
+    - "../vars/{{ ansible_os_family }}.yml"
+    - "../vars/main.yml"
+
 - name: Install mailcatcher dependencies
-  apt: pkg={{ item }} state=present
-  with_items:
+  apt:
+    state: present
+    name:
       - build-essential
       - sqlite3
       - libsqlite3-dev
-      - ruby-dev
-      - ruby
+      - "{{ ruby_package_name }}"
+      - "{{ ruby_package_name}}-dev"
+
+- name: Logfile permissions
+  file:
+    path: /var/log/mailcatcher.log
+    owner: mailcatcher
+    group: mailcatcher
+    state: touch
+
 
 - name: Check for mailcatcher
   stat:
@@ -13,10 +29,13 @@
   register: mailcatcher_installed
 
 - name: Install Mailcatcher
-  command: gem install mailcatcher
+  command: "{{ ruby_gem_bin }} install mailcatcher --no-rdoc --no-ri"
   when: not mailcatcher_installed.stat.exists
 
 - name: Create upstart script for mailcatcher
-  template: src=mailcatcher.j2 dest=/etc/init/mailcatcher.conf mode=0644
+  template:
+    src: "{{ mailcatcher_service_template }}"
+    dest: "{{ mailcatcher_service_target }}"
+    mode: 0644
   notify:
-    - restart mailcatcher
+    - start mailcatcher

@@ -1,0 +1,28 @@
+---
+driver:
+  name: vagrant
+
+provisioner:
+  name: ansible_playbook
+  hosts: test-kitchen
+  require_pip: true
+  ansible_verbose: true
+  ansible_version: 2.2.1.0
+  require_chef_for_busser: false
+
+platforms:
+  - name: ubuntu-16.04
+    driver_config:
+      box: bento/ubuntu-16.04
+  - name: ubuntu-14.04
+    driver_config:
+      box: bento/ubuntu-14.04
+  - name: debian-jessie
+    driver_config:
+      box: debian/jessie64
+
+verifier:
+  name: inspec
+
+suites:
+  - name: default

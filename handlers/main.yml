@@ -1,12 +1,9 @@
 ---
 - name: stop mailcatcher
   service: name=mailcatcher state=stopped
-  ignore_errors: True
 
 - name: start mailcatcher
   service: name=mailcatcher state=started
-  ignore_errors: True
 
 - name: restart mailcatcher
   service: name=mailcatcher state=restarted
-  ignore_errors: True
